@@ -54,7 +54,7 @@ export const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
-        {/* Brand Logo - Bold, Prominent and Clear */}
+        {/* Brand Logo - Explicit 2.24rem Height */}
         <Link href="/" className="flex items-center group shrink-0 py-0.5">
           <Image
             src="/images/logo.png"
@@ -62,7 +62,8 @@ export const Header = () => {
             width={240}
             height={62}
             priority
-            className="h-11 sm:h-12 md:h-13 w-auto object-contain dark:brightness-110 hover:opacity-95 transition-all"
+            style={{ height: '2.24rem', width: 'auto' }}
+            className="h-[2.24rem] w-auto object-contain dark:brightness-110 hover:opacity-95 transition-all"
           />
         </Link>
 

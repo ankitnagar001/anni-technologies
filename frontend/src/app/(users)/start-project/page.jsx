@@ -15,14 +15,30 @@ const projectTypes = [
   { id: 'dedicated-team', label: 'Dedicated Engineering Squad', desc: 'Monthly senior engineers & QA' }
 ];
 
-const budgetRanges = ['$5,000 - $15,000', '$15,000 - $35,000', '$35,000 - $75,000', '$75,000+'];
+const budgetRangesINR = [
+  '₹50,000 - ₹2,00,000',
+  '₹2,00,000 - ₹5,00,000',
+  '₹5,00,000 - ₹15,00,000',
+  '₹15,00,000+'
+];
+
+const budgetRangesUSD = [
+  '$1,000 - $5,000',
+  '$5,000 - $15,000',
+  '$15,000 - $35,000',
+  '$35,000+'
+];
+
 const timelineRanges = ['ASAP (Under 4 weeks)', '1 - 2 Months', '2 - 4 Months', 'Flexible'];
 
 export default function StartProjectPage() {
   const [step, setStep] = useState(1);
+  const [currency, setCurrency] = useState('INR'); // INR by default
+  const [isCustomBudget, setIsCustomBudget] = useState(false);
+  const [customBudgetValue, setCustomBudgetValue] = useState('');
   const [formData, setFormData] = useState({
     type: 'custom-software',
-    budget: '$15,000 - $35,000',
+    budget: '₹2,00,000 - ₹5,00,000',
     timeline: '1 - 2 Months',
     name: '',
     email: '',
@@ -166,24 +182,110 @@ export default function StartProjectPage() {
                   </h3>
 
                   <div className="mb-6">
-                    <label className="block text-sm font-bold text-gray-900 dark:text-white mb-3">
-                      Expected Budget Range
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      {budgetRanges.map((range) => (
-                        <div
-                          key={range}
-                          onClick={() => updateField('budget', range)}
-                          className={`p-3 text-center rounded-xl border-2 text-xs font-semibold cursor-pointer ${
-                            formData.budget === range
-                              ? 'border-[#1D4FFF] bg-blue-50/50 dark:bg-blue-950/40 text-[#1D4FFF]'
-                              : 'border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300'
+                    <div className="flex items-center justify-between mb-3">
+                      <label className="block text-sm font-bold text-gray-900 dark:text-white">
+                        Expected Budget Range
+                      </label>
+                      {/* Currency Toggle */}
+                      <div className="flex items-center gap-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg text-xs font-semibold">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setCurrency('INR');
+                            setIsCustomBudget(false);
+                            updateField('budget', budgetRangesINR[1]);
+                          }}
+                          className={`px-2.5 py-1 rounded-md transition-all ${
+                            currency === 'INR'
+                              ? 'bg-[#1D4FFF] text-white shadow-sm'
+                              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                           }`}
                         >
-                          {range}
-                        </div>
-                      ))}
+                          ₹ INR
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setCurrency('USD');
+                            setIsCustomBudget(false);
+                            updateField('budget', budgetRangesUSD[1]);
+                          }}
+                          className={`px-2.5 py-1 rounded-md transition-all ${
+                            currency === 'USD'
+                              ? 'bg-[#1D4FFF] text-white shadow-sm'
+                              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                          }`}
+                        >
+                          $ USD
+                        </button>
+                      </div>
                     </div>
+
+                    {/* Preset Range Cards */}
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                      {(currency === 'INR' ? budgetRangesINR : budgetRangesUSD).map((range) => {
+                        const isSelected = !isCustomBudget && formData.budget === range;
+                        return (
+                          <div
+                            key={range}
+                            onClick={() => {
+                              setIsCustomBudget(false);
+                              updateField('budget', range);
+                            }}
+                            className={`p-3 text-center rounded-xl border-2 text-xs font-semibold cursor-pointer transition-all ${
+                              isSelected
+                                ? 'border-[#1D4FFF] bg-blue-50/50 dark:bg-blue-950/40 text-[#1D4FFF] shadow-sm'
+                                : 'border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700'
+                            }`}
+                          >
+                            {range}
+                          </div>
+                        );
+                      })}
+
+                      {/* Custom Amount Button */}
+                      <div
+                        onClick={() => {
+                          setIsCustomBudget(true);
+                          updateField('budget', customBudgetValue ? `${currency === 'INR' ? '₹' : '$'}${customBudgetValue}` : 'Custom Budget');
+                        }}
+                        className={`p-3 text-center rounded-xl border-2 text-xs font-semibold cursor-pointer transition-all ${
+                          isCustomBudget
+                            ? 'border-[#1D4FFF] bg-blue-50/50 dark:bg-blue-950/40 text-[#1D4FFF] shadow-sm'
+                            : 'border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700'
+                        }`}
+                      >
+                        Custom Budget
+                      </div>
+                    </div>
+
+                    {/* Custom Input Field when selected */}
+                    {isCustomBudget && (
+                      <div className="mt-3 p-4 rounded-xl bg-gray-50 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 space-y-2">
+                        <label className="block text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Enter your custom budget ({currency === 'INR' ? '₹ INR' : '$ USD'}):
+                        </label>
+                        <div className="relative">
+                          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-gray-500">
+                            {currency === 'INR' ? '₹' : '$'}
+                          </span>
+                          <input
+                            type="text"
+                            placeholder={currency === 'INR' ? "e.g. 75,000 or 4,50,000" : "e.g. 8,000 or 25,000"}
+                            value={customBudgetValue}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setCustomBudgetValue(val);
+                              updateField('budget', val ? `${currency === 'INR' ? '₹' : '$'}${val}` : 'Custom Budget');
+                            }}
+                            className="w-full pl-8 pr-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm font-semibold text-gray-900 dark:text-white focus:outline-none focus:border-[#1D4FFF]"
+                          />
+                        </div>
+                        <p className="text-[11px] text-gray-500">
+                          You can enter any budget range or exact figure you have in mind.
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   <div className="mb-8">
