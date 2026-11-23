@@ -2,56 +2,63 @@ export const technologiesData = [
   {
     category: 'Frontend',
     items: [
-      { name: 'Next.js', level: 'Core Stack', desc: 'React framework for fast, SEO-first, production web apps.' },
-      { name: 'React', level: 'Core Stack', desc: 'Declarative component-driven UI architecture.' },
-      { name: 'TypeScript', level: 'Core Stack', desc: 'Type-safe scalable JavaScript codebases.' },
-      { name: 'Tailwind CSS', level: 'Core Stack', desc: 'Utility-first modern styling and custom design tokens.' },
-      { name: 'Vue.js / Nuxt', level: 'Advanced Expertise', desc: 'Progressive frontends and lightweight micro-frontends.' }
+      { name: 'Next.js', level: 'Core Stack', desc: 'React enterprise framework for sub-second page loads, SSG/ISR, and SEO dominance.' },
+      { name: 'React', level: 'Core Stack', desc: 'Declarative component-driven UI architecture with concurrent rendering.' },
+      { name: 'TypeScript', level: 'Core Stack', desc: 'Type-safe scalable JavaScript codebases with zero runtime type errors.' },
+      { name: 'Tailwind CSS', level: 'Core Stack', desc: 'Utility-first design systems with tokenized Light/Dark mode themes.' },
+      { name: 'Vue.js / Nuxt', level: 'Advanced Expertise', desc: 'Lightweight reactive frontends and progressive single-page apps.' }
     ]
   },
   {
     category: 'Backend',
     items: [
-      { name: 'Node.js / Express', level: 'Core Stack', desc: 'High-throughput asynchronous REST and streaming backends.' },
-      { name: 'Python / FastAPI', level: 'Advanced Expertise', desc: 'High-performance AI, ML, and asynchronous APIs.' },
-      { name: 'Go (Golang)', level: 'Advanced Expertise', desc: 'Low-latency microservices and concurrency-heavy pipelines.' },
-      { name: 'NestJS', level: 'Production Ready', desc: 'Enterprise-grade modular TypeScript backend framework.' }
+      { name: 'Node.js / Express', level: 'Core Stack', desc: 'High-throughput asynchronous event-driven REST and WebSocket servers.' },
+      { name: 'Python / FastAPI', level: 'Advanced Expertise', desc: 'High-performance AI inference, data science, and asynchronous microservices.' },
+      { name: 'Go (Golang)', level: 'Advanced Expertise', desc: 'Ultra-low latency microservices, high concurrency, and distributed streaming.' },
+      { name: 'NestJS', level: 'Production Ready', desc: 'Enterprise-grade structured TypeScript backend framework with dependency injection.' }
     ]
   },
   {
     category: 'Mobile',
     items: [
-      { name: 'React Native', level: 'Core Stack', desc: 'Cross-platform native iOS & Android applications.' },
-      { name: 'Flutter', level: 'Core Stack', desc: 'High-fidelity multi-platform apps with 120 FPS animations.' },
-      { name: 'Swift (iOS)', level: 'Production Ready', desc: 'Native iOS engineering with CoreData and Metal.' },
-      { name: 'Kotlin (Android)', level: 'Production Ready', desc: 'Native Android apps using Jetpack Compose.' }
+      { name: 'React Native', level: 'Core Stack', desc: 'Cross-platform native iOS & Android applications with near 60 FPS performance.' },
+      { name: 'Flutter', level: 'Core Stack', desc: 'Multi-platform client applications with custom rendering engine and fluid animations.' },
+      { name: 'Swift (iOS)', level: 'Production Ready', desc: 'Native Apple ecosystem engineering with SwiftUI, CoreData, and Metal.' },
+      { name: 'Kotlin (Android)', level: 'Production Ready', desc: 'Native Android apps using Jetpack Compose and modern reactive architecture.' }
     ]
   },
   {
     category: 'Database',
     items: [
-      { name: 'MongoDB', level: 'Core Stack', desc: 'Flexible NoSQL document database with Atlas scaling.' },
-      { name: 'PostgreSQL', level: 'Core Stack', desc: 'Robust relational database with JSONB support.' },
-      { name: 'Redis', level: 'Core Stack', desc: 'In-memory caching, pub/sub, and rate-limiting store.' },
-      { name: 'Supabase', level: 'Production Ready', desc: 'Open-source Firebase alternative with real-time subscriptions.' }
+      { name: 'MongoDB', level: 'Core Stack', desc: 'Flexible JSON document database with automated Atlas clustering and multi-region failover.' },
+      { name: 'PostgreSQL', level: 'Core Stack', desc: 'ACID-compliant relational database with JSONB indexing and high write capacity.' },
+      { name: 'Redis', level: 'Core Stack', desc: 'In-memory caching, real-time pub/sub message brokers, and distributed rate limiters.' },
+      { name: 'Supabase', level: 'Production Ready', desc: 'Scalable open-source Firebase alternative with built-in row level security.' }
     ]
   },
   {
     category: 'Cloud/DevOps',
     items: [
-      { name: 'AWS Cloud', level: 'Core Stack', desc: 'EC2, ECS, Lambda, S3, CloudFront, RDS infrastructure.' },
-      { name: 'Docker & K8s', level: 'Core Stack', desc: 'Containerization and Kubernetes cluster orchestration.' },
-      { name: 'Vercel / Cloudflare', level: 'Core Stack', desc: 'Edge networks, global CDNs, and instant serverless compute.' },
-      { name: 'GitHub Actions', level: 'Core Stack', desc: 'Automated CI/CD pipelines with test and security scans.' }
+      { name: 'AWS Cloud', level: 'Core Stack', desc: 'Enterprise infrastructure: ECS, Lambda, S3, RDS, CloudFront, and Route53.' },
+      { name: 'Docker & K8s', level: 'Core Stack', desc: 'Reproducible container images and Kubernetes orchestration clusters.' },
+      { name: 'Vercel / Cloudflare', level: 'Core Stack', desc: 'Edge serverless execution, global caching, DDoS protection, and instant rollbacks.' },
+      { name: 'GitHub Actions', level: 'Core Stack', desc: 'Automated CI/CD pipelines with automated linting, unit tests, and security scans.' }
     ]
   },
   {
     category: 'AI/ML',
     items: [
-      { name: 'OpenAI & Claude APIs', level: 'Core Stack', desc: 'Advanced LLM integration, function calling, and agents.' },
-      { name: 'LangChain & LlamaIndex', level: 'Advanced Expertise', desc: 'RAG pipelines and autonomous knowledge engines.' },
-      { name: 'PyTorch', level: 'Advanced Expertise', desc: 'Deep learning model training and inference optimization.' },
-      { name: 'Pinecone / ChromaDB', level: 'Production Ready', desc: 'Vector databases for semantic search and AI retrieval.' }
+      { name: 'OpenAI & Claude APIs', level: 'Core Stack', desc: 'State-of-the-art LLM fine-tuning, function calling, and multi-step reasoning agents.' },
+      { name: 'LangChain & LlamaIndex', level: 'Advanced Expertise', desc: 'Retrieval Augmented Generation (RAG) pipelines and autonomous agent tool use.' },
+      { name: 'PyTorch', level: 'Advanced Expertise', desc: 'Deep learning neural network modeling, training, and production ONNX inference.' },
+      { name: 'Pinecone / Vector DB', level: 'Production Ready', desc: 'Sub-millisecond vector indexing for semantic similarity search and AI recall.' }
+    ]
+  },
+  {
+    category: 'Game Development',
+    items: [
+      { name: 'Unity 3D', level: 'Core Stack', desc: 'Cross-platform mobile, desktop, and WebGL game development with C# scripting.' },
+      { name: 'Unreal Engine 5', level: 'Advanced Expertise', desc: 'Photorealistic real-time rendering, multiplayer physics, and virtual simulations.' }
     ]
   }
 ];

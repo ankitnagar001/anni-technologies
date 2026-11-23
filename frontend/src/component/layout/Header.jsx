@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
@@ -13,6 +13,7 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const closeTimeoutRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,19 @@ export const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    setServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 150);
+  };
 
   const navLinks = [
     { name: 'Portfolio', href: '/portfolio' },
@@ -36,13 +50,13 @@ export const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'py-3 bg-white/85 dark:bg-[#0B1020]/85 backdrop-blur-md shadow-sm border-b border-gray-200/60 dark:border-gray-800/60'
+          ? 'py-3 bg-white/90 dark:bg-[#0B1020]/90 backdrop-blur-md shadow-sm border-b border-gray-200/60 dark:border-gray-800/60'
           : 'py-5 bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group shrink-0">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#1D4FFF] to-[#0E7490] flex items-center justify-center text-white font-bold text-xl shadow-glow">
             A
           </div>
@@ -58,14 +72,14 @@ export const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-7 text-sm font-medium">
-          {/* Services with MegaMenu */}
+          {/* Services with Hover Area */}
           <div
-            className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
+            className="py-2"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <button
-              className={`flex items-center gap-1.5 py-2 transition-colors cursor-pointer ${
+              className={`flex items-center gap-1.5 transition-colors cursor-pointer ${
                 pathname.startsWith('/services') || servicesOpen
                   ? 'text-[#1D4FFF] dark:text-[#4D7CFF] font-semibold'
                   : 'text-gray-700 dark:text-gray-300 hover:text-[#1D4FFF] dark:hover:text-[#4D7CFF]'
@@ -78,7 +92,6 @@ export const Header = () => {
                 }`}
               />
             </button>
-            {servicesOpen && <MegaMenu onClose={() => setServicesOpen(false)} />}
           </div>
 
           {navLinks.map((link) => {
@@ -100,7 +113,7 @@ export const Header = () => {
         </nav>
 
         {/* Right Actions */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4 shrink-0">
           <ThemeToggle />
           <Link
             href="/book-consultation"
@@ -112,6 +125,17 @@ export const Header = () => {
             Start Project
           </Button>
         </div>
+
+        {/* Dropdown Anchored to the Max-W-7xl Header Container to NEVER cut off */}
+        {servicesOpen && (
+          <div
+            className="hidden lg:block absolute top-full left-4 sm:left-6 lg:left-8 pt-2 z-50"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <MegaMenu onClose={() => setServicesOpen(false)} />
+          </div>
+        )}
 
         {/* Mobile menu trigger */}
         <div className="flex items-center gap-3 lg:hidden">
@@ -135,7 +159,7 @@ export const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="text-base font-semibold text-gray-900 dark:text-white"
             >
-              Services (All)
+              Services (All 10 Specializations)
             </Link>
             {navLinks.map((link) => (
               <Link
