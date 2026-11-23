@@ -56,10 +56,10 @@ export default function LoginPage() {
             <Image
               src="/images/logo.png"
               alt="ANNI TECHNOLOGIES"
-              width={200}
-              height={48}
+              width={240}
+              height={62}
               priority
-              className="h-10 w-auto object-contain mx-auto dark:brightness-110"
+              className="h-12 sm:h-14 w-auto object-contain mx-auto dark:brightness-110"
             />
           </Link>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">

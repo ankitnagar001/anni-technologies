@@ -71,10 +71,10 @@ export default function AdminLayout({ children }) {
             <Image
               src="/images/logo.png"
               alt="ANNI TECHNOLOGIES"
-              width={180}
-              height={42}
+              width={200}
+              height={52}
               priority
-              className="h-8 w-auto object-contain dark:brightness-110 mb-1"
+              className="h-10 w-auto object-contain dark:brightness-110 mb-1"
             />
             <span className="text-[10px] font-mono uppercase text-[#1D4FFF] tracking-widest block font-bold">
               Admin Portal

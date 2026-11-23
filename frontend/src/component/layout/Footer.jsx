@@ -59,9 +59,9 @@ export const Footer = () => {
               <Image
                 src="/images/logo.png"
                 alt="ANNI TECHNOLOGIES"
-                width={190}
-                height={44}
-                className="h-8 w-auto object-contain dark:brightness-110"
+                width={220}
+                height={56}
+                className="h-10 sm:h-11 w-auto object-contain dark:brightness-110"
               />
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">

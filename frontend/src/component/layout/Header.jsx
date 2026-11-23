@@ -50,19 +50,19 @@ export const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white/95 dark:bg-[#0B1020]/95 backdrop-blur-md shadow-sm border-b border-gray-200/80 dark:border-gray-800/80 ${
-        isScrolled ? 'py-3' : 'py-3.5'
+        isScrolled ? 'py-2' : 'py-2.5 sm:py-3'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group shrink-0">
+        {/* Brand Logo - Bold, Prominent and Clear */}
+        <Link href="/" className="flex items-center group shrink-0 py-0.5">
           <Image
             src="/images/logo.png"
             alt="ANNI TECHNOLOGIES"
-            width={190}
-            height={44}
+            width={240}
+            height={62}
             priority
-            className="h-8 sm:h-9 w-auto object-contain dark:brightness-110"
+            className="h-11 sm:h-12 md:h-13 w-auto object-contain dark:brightness-110 hover:opacity-95 transition-all"
           />
         </Link>
 
