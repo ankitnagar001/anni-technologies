@@ -3,7 +3,9 @@ import mongoose from 'mongoose';
 const caseStudySchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
+    subtitle: { type: String, default: '' },
     slug: { type: String, required: true, unique: true, lowercase: true, trim: true },
+    tags: [{ type: String }],
     client: { type: String, required: true },
     industry: { type: String, required: true },
     services: [{ type: String }],

@@ -3,7 +3,10 @@ import mongoose from 'mongoose';
 const projectSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
+    subtitle: { type: String, default: '' },
+    badge: { type: String, default: 'Web Application' },
     slug: { type: String, required: true, unique: true, lowercase: true, trim: true },
+    caseStudySlug: { type: String, default: '' },
     category: [{ type: String, required: true }],
     industry: { type: String, required: true },
     client: { type: String, required: true },

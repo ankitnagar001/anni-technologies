@@ -26,11 +26,11 @@ export default function AdminLayout({ children }) {
 
   const navItems = [
     { label: 'Overview', href: '/admin', icon: LayoutDashboard },
+    { label: 'Projects (Upload)', href: '/admin/projects', icon: Briefcase },
+    { label: 'Case Studies', href: '/admin/case-studies', icon: Layers },
     { label: 'Leads & Inquiries', href: '/admin/leads', icon: Users },
     { label: 'Bookings', href: '/admin/bookings', icon: Calendar },
-    { label: 'Projects & Work', href: '/portfolio', icon: Briefcase, external: true },
-    { label: 'Services', href: '/services', icon: Layers, external: true },
-    { label: 'Blog Posts', href: '/blog', icon: FileText, external: true }
+    { label: 'View Public Site', href: '/', icon: ExternalLink, external: true }
   ];
 
   return (
