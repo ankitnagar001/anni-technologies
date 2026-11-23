@@ -110,30 +110,14 @@ export default function CaseStudiesPage() {
                   </h2>
 
                   {/* Description */}
-                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                     {study.summary}
                   </p>
-
-                  {/* Metrics bar if available */}
-                  {study.metrics && study.metrics.length > 0 && (
-                    <div className="grid grid-cols-3 gap-2 py-4 border-t border-gray-100 dark:border-gray-800 mb-2">
-                      {study.metrics.map((m, i) => (
-                        <div key={i}>
-                          <span className="block text-lg font-extrabold text-[#1D4FFF]">
-                            {m.metric}
-                          </span>
-                          <span className="block text-xs text-gray-500 line-clamp-1">
-                            {m.label}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </div>
 
               {/* Read Case Study Link matching screenshot */}
-              <div className="px-7 sm:px-8 pb-7 pt-2">
+              <div className="px-7 sm:px-8 pb-7 pt-0">
                 <Link
                   href={`/portfolio/${study.slug || 'finscale-neobank'}`}
                   className="inline-flex items-center text-sm font-bold text-[#1D4FFF] hover:underline gap-1.5 group-hover:translate-x-0.5 transition-transform"

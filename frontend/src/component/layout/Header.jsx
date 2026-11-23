@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
 import { ThemeToggle } from '../ui/ThemeToggle.jsx';
@@ -48,26 +49,21 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'py-3 bg-white/90 dark:bg-[#0B1020]/90 backdrop-blur-md shadow-sm border-b border-gray-200/60 dark:border-gray-800/60'
-          : 'py-5 bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white/95 dark:bg-[#0B1020]/95 backdrop-blur-md shadow-sm border-b border-gray-200/80 dark:border-gray-800/80 ${
+        isScrolled ? 'py-3' : 'py-3.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#1D4FFF] to-[#0E7490] flex items-center justify-center text-white font-bold text-xl shadow-glow">
-            A
-          </div>
-          <div className="flex flex-col">
-            <span className="font-extrabold text-lg tracking-tight text-gray-900 dark:text-white leading-none">
-              ANNI
-            </span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#1D4FFF] dark:text-[#4D7CFF] mt-0.5">
-              TECHNOLOGIES
-            </span>
-          </div>
+          <Image
+            src="/images/logo.png"
+            alt="ANNI TECHNOLOGIES"
+            width={190}
+            height={44}
+            priority
+            className="h-8 sm:h-9 w-auto object-contain dark:brightness-110"
+          />
         </Link>
 
         {/* Desktop Nav */}

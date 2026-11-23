@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
@@ -11,17 +12,32 @@ import {
   Layers,
   FileText,
   LogOut,
-  ExternalLink
+  ExternalLink,
+  ShieldAlert
 } from 'lucide-react';
 import { ThemeToggle } from '../../component/ui/ThemeToggle.jsx';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+
+  useEffect(() => {
+    // Strictly verify admin authentication
+    const token = typeof window !== 'undefined' ? localStorage.getItem('admin_token') : null;
+    if (!token) {
+      router.replace('/login');
+    } else {
+      setIsAuthenticated(true);
+      setCheckingAuth(false);
+    }
+  }, [router]);
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
-    router.push('/login');
+    document.cookie = 'admin_token=; Max-Age=0; path=/;';
+    router.replace('/login');
   };
 
   const navItems = [
@@ -33,24 +49,36 @@ export default function AdminLayout({ children }) {
     { label: 'View Public Site', href: '/', icon: ExternalLink, external: true }
   ];
 
+  if (checkingAuth || !isAuthenticated) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-[#0B1020] text-gray-900 dark:text-gray-100 p-4">
+        <div className="w-10 h-10 border-3 border-[#1D4FFF] border-t-transparent rounded-full animate-spin mb-4" />
+        <div className="flex items-center gap-2 text-xs font-mono tracking-wider text-gray-500 uppercase">
+          <ShieldAlert className="w-4 h-4 text-[#1D4FFF]" />
+          <span>Verifying Admin Authorization...</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex bg-gray-50 dark:bg-[#0B1020] text-gray-900 dark:text-gray-100">
       {/* Sidebar */}
       <aside className="w-64 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[#121A30] flex flex-col justify-between p-6 shrink-0">
         <div>
           {/* Logo */}
-          <Link href="/admin" className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 rounded-xl bg-[#1D4FFF] text-white flex items-center justify-center font-bold text-sm shadow-glow">
-              A
-            </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-sm tracking-tight text-gray-900 dark:text-white">
-                ANNI ADMIN
-              </span>
-              <span className="text-[9px] font-mono uppercase text-[#1D4FFF] tracking-wider">
-                Control Panel
-              </span>
-            </div>
+          <Link href="/admin" className="block mb-8">
+            <Image
+              src="/images/logo.png"
+              alt="ANNI TECHNOLOGIES"
+              width={180}
+              height={42}
+              priority
+              className="h-8 w-auto object-contain dark:brightness-110 mb-1"
+            />
+            <span className="text-[10px] font-mono uppercase text-[#1D4FFF] tracking-widest block font-bold">
+              Admin Portal
+            </span>
           </Link>
 
           {/* Navigation */}

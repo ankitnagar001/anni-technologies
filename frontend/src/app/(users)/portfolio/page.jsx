@@ -121,7 +121,7 @@ export default function PortfolioPage() {
           </div>
         </div>
 
-        {/* 3-Column Grid matching reference cards */}
+        {/* 2-Column Grid on Desktop matching reference request */}
         {filteredProjects.length === 0 ? (
           <div className="text-center py-20 bg-white dark:bg-[#121A30] rounded-3xl border border-gray-200 dark:border-gray-800 p-8">
             <p className="text-base font-semibold text-gray-500">
@@ -138,7 +138,7 @@ export default function PortfolioPage() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
             {filteredProjects.map((project) => (
               <div
                 key={project.id || project.slug}
@@ -146,12 +146,12 @@ export default function PortfolioPage() {
               >
                 <div>
                   {/* Cover container with top-left floating pill badge */}
-                  <div className="relative h-60 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+                  <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
                     <Image
                       src={project.cover}
                       alt={project.title}
                       fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {project.badge && (

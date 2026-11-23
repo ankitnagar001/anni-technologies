@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export const Footer = () => {
@@ -54,13 +55,14 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-gray-200 dark:border-gray-800">
           {/* Brand Col */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-[#1D4FFF] text-white flex items-center justify-center font-bold text-lg shadow-glow">
-                A
-              </div>
-              <span className="font-extrabold text-lg tracking-tight text-gray-900 dark:text-white">
-                ANNI SOFTWARE
-              </span>
+            <Link href="/" className="inline-block mb-4">
+              <Image
+                src="/images/logo.png"
+                alt="ANNI TECHNOLOGIES"
+                width={190}
+                height={44}
+                className="h-8 w-auto object-contain dark:brightness-110"
+              />
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
               Engineering high-performance custom software, mobile apps, SaaS, and AI automation for fast-growing companies worldwide.
